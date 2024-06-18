@@ -2,6 +2,7 @@ import {User} from '../models/user';
 import { AppDataSource } from '../config/database-config';
 import { Repository } from 'typeorm';
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 class UserService {
     private userRepository: Repository<User>;
@@ -49,10 +50,9 @@ class UserService {
             throw new Error('Invalid credentials');
         }
 
-        // Generate JWT token or perform other authentication tasks
-        // ...
-
-        return 'token'; // Placeholder return
+        const secretKey:string|undefined = process.env.JWT_SECRET;
+        let token:string = jwt.sign({id:user.id,email:user.email},secretKey!,{expiresIn:'1d'});
+        return token; 
     }
 
 }
