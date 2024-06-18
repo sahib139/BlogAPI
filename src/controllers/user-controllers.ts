@@ -37,3 +37,8 @@ const signIn = async (req:Request,res:Response)=>{
         });
     }
 };
+
+export{
+    signIn,
+    signUp
+}
