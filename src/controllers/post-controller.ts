@@ -61,7 +61,8 @@ const createPost = async (req: Request, res: Response) => {
 
 const updatePost = async (req: Request, res: Response) => {
     try {
-        const post : Post|undefined = await postService.updatePost(req.body.title,req.body.content,req.body.authorId);
+        const postId : number = parseInt(req.params.id,10);
+        const post : Post|undefined = await postService.updatePost(postId,req.body.title,req.body.content);
         if(!post){
             throw new Error('post update, failed');
         }

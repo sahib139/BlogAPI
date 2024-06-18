@@ -9,4 +9,4 @@ router.put('/posts/:id',updatePost);
 router.delete('/posts/:id',deletePost);
 router.get('/posts',getAllPost);
 
-export = {router};
+export {router as PostRoutes};

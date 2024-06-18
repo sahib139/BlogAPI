@@ -26,8 +26,9 @@ class PostService {
             content,
             author:user
         });
-
-        return await this.postRepository.save(newPost);
+        const post:Post = await this.postRepository.save(newPost);
+        const {author,...NewPost} = post;
+        return NewPost as Post;
     }
 
     async getAllPosts(): Promise<Post[]> {
