@@ -70,7 +70,8 @@ curl -X GET http://localhost:5000/posts \
 ```
 
 - Delete a Post ->
-```curl -X DELETE http://localhost:5000/posts/1 \
+```
+curl -X DELETE http://localhost:5000/posts/1 \
 -H "Authorization: Bearer <your_jwt_token>"
 ```
 
