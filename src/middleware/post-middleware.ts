@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 const validatePostData = (req: Request, res: Response, next: NextFunction) => {
-    const { title, content, authorId } = req.body;
+    const { title, content } = req.body;
 
     if (!title || typeof title !== 'string') {
         return res.status(400).json({
@@ -18,15 +18,6 @@ const validatePostData = (req: Request, res: Response, next: NextFunction) => {
             data: '',
         });
     }
-
-    if (!authorId || typeof authorId !== 'number') {
-        return res.status(400).json({
-            msg: "Invalid author ID",
-            err: "Author ID is required and must be a number",
-            data: '',
-        });
-    }
-
     next();
 };
 

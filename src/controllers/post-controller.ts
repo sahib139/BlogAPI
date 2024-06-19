@@ -41,7 +41,8 @@ const getAllPost = async (req: Request, res: Response) => {
 
 const createPost = async (req: Request, res: Response) => {
     try {
-        const post : Post|undefined = await postService.createPost(req.body.title,req.body.content,req.body.authorId);
+        console.log(req.user,req.user!.id);
+        const post : Post|undefined = await postService.createPost(req.body.title,req.body.content,req.user!.id);
         if(!post){
             throw new Error('post creation, failed');
         }

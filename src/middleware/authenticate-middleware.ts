@@ -4,7 +4,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 declare global {
     namespace Express {
         interface Request {
-            user?: JwtPayload|string; 
+            user?: JwtPayload; 
         }
     }
 }
@@ -22,8 +22,9 @@ const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
 
     try {
         const secret:string|undefined = process.env.JWT_SECRET ;
-        const decoded:JwtPayload|string = jwt.verify(token, secret!);
-        req.user = decoded;
+        const decoded:JwtPayload|string = jwt.verify(token, secret!) ;
+        req.user = decoded as JwtPayload;
+        console.log(req.user);
         next();
     } catch (error) {
         return res.status(400).json({
@@ -34,4 +35,4 @@ const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default authenticateJWT;
+export {authenticateJWT};
