@@ -14,9 +14,8 @@ class PostService {
         this.userService = new UserService();
     }
 
-    async createPost(title: string, content: string, authorId: number): Promise<Post | undefined> {
-        const user:User|undefined = await this.userService.getUserById(authorId);
-
+    async createPost(title: string, content: string, authorEmail: string): Promise<Post | undefined> {
+        const user:User|undefined = await this.userService.getUserByEmail(authorEmail);
         if(!user){
             throw new Error('No such Author exist!');
         }

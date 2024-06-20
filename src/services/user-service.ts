@@ -11,6 +11,16 @@ class UserService {
         this.userRepository = AppDataSource.getRepository(User);  
     }
 
+    async getUserByEmail(email:string):Promise<User|undefined>{
+        
+        const user:User|null = await this.userRepository.findOneBy({email});
+
+        if(!user){
+            return undefined;
+        }
+        return user;
+    }
+
     async getUserById(id:number):Promise<User|undefined>{
         
         const user:User|null = await this.userRepository.findOneBy({id});
