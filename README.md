@@ -42,6 +42,11 @@ curl -X POST http://localhost:5000/signin \
 }'
 ```
 
+- SignIn using oauth(google) ->
+```
+curl -X POST http://localhost:5000/auth/google 
+```
+
 #### Posts Routes ->
 - Get All Posts ->
 ```
